@@ -1,31 +1,29 @@
 {
-  "name": "ghtun",
+  "name": "Sham-NET",
   "build": {
-    "dockerfile": "./Dockerfile",
+    "dockerfile": "Dockerfile",
     "context": "."
   },
   "features": {
-    "ghcr.io/devcontainers/features/common-utils:2": {"installZsh": false},
-    "ghcr.io/devcontainers/features/github-cli:1": {"version": "latest"}
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": false
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    }
   },
-  "initializeCommand": "echo '⚠️  Make sure you tested which IP works on your local network first!'",
-  "postAttachCommand": {
-    "public": "gh codespace ports visibility 443:public -c $CODESPACE_NAME"
-  },
-  "containerEnv": {
-    "ALLOWED_IPS": "94.130.50.12,63.141.252.203,50.7.5.83"
-  },
+  "postAttachCommand": "gh codespace ports visibility 443:public -c $CODESPACE_NAME && bash /usr/local/bin/start.sh",
   "portsAttributes": {
     "443": {
-      "label": "xray",
+      "label": "Sham-NET",
       "protocol": "http",
       "onAutoForward": "silent"
     }
   },
-  "forwardPorts": [443],
+  "forwardPorts": [
+    443
+  ],
   "hostRequirements": {
-    "cpus": 2,
-    "memory": "4gb",
-    "storage": "32gb"
+    "cpus": 2
   }
 }
